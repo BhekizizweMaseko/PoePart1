@@ -4,6 +4,8 @@
  */
 package sgela.poepart1;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -11,110 +13,99 @@ import java.util.*;
  */
 public class LogIn {
     
-   static  String username, password, firstName, lastName;
-    
-    //registration of user
-        public static void registerUser() {
-        //object for scanner
-        Scanner take_input = new Scanner(System.in);
-        
-        //prompt the user for both username, password, firstName and lastName
-        System.out.println("Enter username");
-        String username= take_input.nextLine();
-        
-        System.out.println("Enter password");
-        String password= take_input.nextLine();
-        
-        System.out.println("Enter first name");
-        String firstName = take_input.nextLine();
-        
-        System.out.println("Enter last name");
-        String lastName = take_input.nextLine();
-        //method to check password and username
-        checkUsername(username);
-        checkPasswordComplexity(password);
-    }
-    
-    public static boolean loginUser() {
-        //object for scanner
-        Scanner take_input = new Scanner(System.in);
-        
-        //log in details prompt
-        System.out.println("Enter username");
-        String username = take_input.nextLine();
-        
-        System.out.println("Enter password");
-        String password = take_input.nextLine();
-        
-        //method to check password and username
-        checkUsername(username);
-        checkPasswordComplexity(password);
-       return false;
-        
+String firstName;
+ String lastName;
+ String userName = null;
+ String password = null;
+ 
+ public void setFirstName(String Fname)
+ {firstName = Fname;}
+ public void setLastName(String Lname)
+ {lastName = Lname;}
+ public void setUserName(String Uname)
+ {userName = Uname;}
+ public void setPassword(String Pword)
+ {password = Pword;}
+ 
+ public String getFirstName()
+ { return firstName;}
+ public String getLastName()
+ {return lastName;}
+ public String getUserName()
+ {return userName;}
+ public String getPassword()
+ {return password;}
+ 
+ 
+ public boolean checkUserName(String userName) {
+ return userName.contains("_") && userName.length() <= 5;
+ }
+ 
+ 
+ public boolean checkPasswordComplexity(String password){
+ boolean containsACapitalLetter = false;
+ boolean containsADigit = false;
+ 
+ 
+ 
+ Pattern pattern = Pattern.compile("[^a-zA-Z0-9\\s]");
+ Matcher matcher = pattern.matcher(password);
+ 
+ 
+ 
+ for(int i = 0; i < password.length(); i++){
+ if(Character.isUpperCase(password.charAt(i)))
+ {containsACapitalLetter = true;}
+ 
+ }
+ 
+ for(int i = 0; i < password.length(); i++){
+ if(Character.isDigit(password.charAt(i)))
+ containsADigit = true;
+ 
+ }
+ 
+ return(matcher.find()&& password.length()>=8 && containsACapitalLetter && 
+containsADigit);
+ 
+ 
 }
-    
-    //method to check username and password
-    public static void returnLoginStatus() {
-if (loginUser()) {
-    System.out.println("Welcome! "+firstName+" "+lastName+" Its great to see you again!");
-    
-}
-    }
-    
-     //method to check the password    
-    public static boolean checkPasswordComplexity(String password) {
-        
-    if(password.length() > 7)
-    {
-     //return success
-        System.out.println("Password successfully captured");
-    }
-    else
-    {
-      //error message
-System.out.println("Password is not correctly formatted, please ensure that your password contains at least 8 characters, a capital letter, a number and a special character");
-        }
-    
-    boolean hasNum = false; boolean hasCap = false; boolean hasLow = false; char c; boolean hasSpecialChar = false;
-    
-    //declarations for special characters
-    String specialCharacters = "!@#$%^&*()-+=<>?";
-    
-    for (int i = 0; i < password.length(); i++)
-    {
-      c = password.charAt(i);
-      if(Character.isDigit(c));
-      {
-      hasNum = true;
-      }
-       if (specialCharacters.indexOf (c) >= 0) {
-              hasSpecialChar = true;
-              }
-      if(Character.isUpperCase(c))
-              {
-              hasCap = true;
-              }
-      else if(Character.isLowerCase(c))
-              {
-              hasLow = true;
-              }
-      if(hasNum && hasCap && hasLow)
-      {
-          return true;
-      }
-    }
-      return false;
-              
-      
-        
-    
-    }
-    
-    public static boolean checkUsername(String username) {
-    return username.contains("_") && username.length()>=5;
-    
-    }
+ 
+ public String registerUser(String userName, String password){
+ 
+ boolean usableUserName = checkUserName(userName);
+ boolean usablePassword = checkPasswordComplexity(password);
+ 
+ if (usableUserName && usablePassword){
+ return "Account successfully registered."; }
+ 
+ else if(!usableUserName ){
+ return "Username is formatted incorrectly"; 
+ }
+ else if(!usablePassword ){
+ return "Password does not meet specifications";
+ }
+ return"";
+ }
+ 
+ public boolean loginUser(String userName1, String password1){
+ 
+ 
+ return( userName1.equals(userName) && password1.equals(password)); }
+ 
+ 
+ public String returnLoginStatus(boolean loginComplete){
+ 
+ if(loginComplete) {
+ return "Welcome " + firstName + " " + lastName + " ,its lovely to see you.<3";
+ }
+ else {
+ return "Login unsuccesful.Username or password may be inncorrect,please try again.";
+ }
+ 
+ 
+}}
             
     
-}
+
 
