@@ -16,7 +16,7 @@ public class LogIn {
 String firstName;
  String lastName;
  String userName = null;
- String password = null:
+ String password = null;
  
  public void setFirstName(String Fname)
  {firstName = Fname;}
