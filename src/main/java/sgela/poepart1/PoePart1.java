@@ -34,9 +34,10 @@ LogIn obj1 = new LogIn();
  int taskAmount;
  
  
+ //Registration
  firstName = JOptionPane.showInputDialog("Enter firstname >> ");
- // System.out.print(
- lastName = JOptionPane.showInputDialog("Enter lastname >> ");
+ System.out.print(
+         lastName = JOptionPane.showInputDialog("Enter lastname >> "));
  
  obj1.setFirstName(firstName);
  obj1.setLastName(lastName);
@@ -58,7 +59,7 @@ LogIn obj1 = new LogIn();
  
  boolean usablePassword = false;
  while (!usablePassword) {
- //System.out.print("Create a password >> ");
+ System.out.print("Create a password >> ");
  password = JOptionPane.showInputDialog("Create your passowrd >> ");
  if (obj1.checkPasswordComplexity(password)) {
  usablePassword = true;
@@ -71,12 +72,12 @@ LogIn obj1 = new LogIn();
  JOptionPane.showMessageDialog(null, registrationMessage);
  boolean loggedIn = false;
  while (!loggedIn) {
+ System.out.println( 
+          userName = JOptionPane.showInputDialog("Enter your username: "));
  System.out.println(
- String loginUserName = JOptionPane.showInputDialog("Enter your username: ");
- System.out.println(
- String loginUserPassword = JOptionPane.showInputDialog("Enter your password: ");
+          password = JOptionPane.showInputDialog("Enter your password: "));
  
- if (obj1.loginUser(loginUserName, loginUserPassword)) {
+ if (obj1.loginUser(userName, password)) {
  loggedIn = true;
  JOptionPane.showMessageDialog(null, obj1.returnLoginStatus(true));
  continue;
@@ -88,13 +89,13 @@ LogIn obj1 = new LogIn();
  
  //KANBAN FEATURE
  JOptionPane.showMessageDialog(null, "Hello, welcome to KANBAN!");
- 
- boolean running = true;
+  boolean running = true;
  while (running) {
  // Display menu options
  String[] options = {"Add Task", "Show Report", "Quit"};
  int choice = JOptionPane.showOptionDialog(null, "Choose an option:", "Task Manager",
  JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+ 
  // SWITCH IS USED TO SEPARATE THE DIFFERENT OPTIONS PRESENTED
  switch (choice) {
  case 0:
@@ -145,6 +146,7 @@ obj2.taskDescriptions[i], taskDuration, firstName, lastName, choice1);
  JOptionPane.showMessageDialog(null, "Please enter a valid number of tasks.");
  }
  break;
+ 
  case 1:
  // Show Report Menu
  boolean reportMenu = true;
@@ -186,9 +188,12 @@ reportChoiceString.matches("\\d+")) {
  break;
  
  case 4:
+     //Display all tasks
  obj2.displayAllTasks();
  break;
+ 
  case 5:
+     //Search by developer's name
  String developerName = JOptionPane.showInputDialog("Enter Developer's Full Name:");
  if (developerName != null && !developerName.isEmpty()) {
  obj2.searchTasksByDeveloper(developerName);
@@ -196,13 +201,17 @@ reportChoiceString.matches("\\d+")) {
  JOptionPane.showMessageDialog(null, "Please enter a valid developer name.");
  }
  break;
+ 
  case 6:
+     //Display task with longest duration
  obj2.displayTaskWithLongestDuration();
  break;
+ 
  case 7:
  // Back to main menu
  reportMenu = false;
  break;
+ 
  default:
  JOptionPane.showMessageDialog(null, "Please select a valid option.");
  break;
@@ -210,11 +219,13 @@ reportChoiceString.matches("\\d+")) {
  }
  }}
  break;
+ 
  case 2:
  // Quit the program
  JOptionPane.showMessageDialog(null, "Thank you for using Kanban!");
  running = false;
  break;
+ 
  default:
  // If the user closes the dialog without choosing an option
  JOptionPane.showMessageDialog(null, "Please make a selection.");
