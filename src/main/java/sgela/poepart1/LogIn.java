@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package sgela.poepart1;
-import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class LogIn {
     
-String firstName;
+ String firstName;
  String lastName;
  String userName = null;
  String password = null;
@@ -105,6 +104,7 @@ containsADigit);
  
  
 }}
+
             
     
 
