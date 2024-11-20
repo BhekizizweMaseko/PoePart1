@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package sgela.poepart1;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,6 +54,7 @@ taskDescription,
  }
  return total;
  }
+ 
  // METHOD TO CREATE TASKID
  public String createTaskID(String taskName, int taskNumber, String lastName) {
  String taskID = "";
@@ -66,6 +67,7 @@ taskDescription,
  }
  return taskID;
  }
+ 
  // METHOD TO SEARCH TASK BY NUMBER
  public void searchTask(int taskNumber) {
  for (int i = 0; i < taskNames.length; i++) {
@@ -73,14 +75,14 @@ taskDescription,
  String message =
  "Task Status: " + taskStatuses[i] + "\n" +
  "Developer Details: " + developerDetails[i] + "\n" +
- "Task Name: " + taskNames[i] + "\n";
- 
+ "Task Name: " + taskNames[i] + "\n"; 
  JOptionPane.showMessageDialog(null, message);
  return;
  }
  }
  JOptionPane.showMessageDialog(null, "Task not found.");
  }
+ 
  // METHOD TO DELETE TASK
  public void deleteTask(int taskNumber) {
  for (int i = 0; i < taskNames.length; i++) {
@@ -111,6 +113,7 @@ taskDescription,
  JOptionPane.showMessageDialog(null, "Invalid task number.");
  }
  }
+ 
  public void displayTasksWithStatusDone() {
  StringBuilder message = new StringBuilder("Tasks with Status 'Done':\n\n");
  boolean found = false;
@@ -130,6 +133,7 @@ i).append("\n")
  }
  JOptionPane.showMessageDialog(null, message.toString());
  }
+ 
  // METHOD TO DISPLAY ALL TASKS
  public void displayAllTasks() {
  StringBuilder message = new StringBuilder("All Captured Tasks:\n\n");
@@ -150,6 +154,7 @@ i).append("\n")
  }
  JOptionPane.showMessageDialog(null, message.toString());
  }
+ 
  // METHOD TO DISPLAY TASK WITH LONGEST DURATION
  public void displayTaskWithLongestDuration() {
  int longestDuration = 0;
